@@ -1,0 +1,6 @@
+{
+  "name": "Coupe du Monde Glassify",
+  "description": "Widget de style glassmorphism ultra-épuré pour la Coupe du Monde avec liste des matchs, buteurs en direct et classements interactifs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
