@@ -18,7 +18,7 @@ import {
   Target
 } from 'lucide-react';
 import { Match, Group, Team, Goalscorer, ScorerEvent } from './types';
-import { TEAMS, GROUPS, INITIAL_MATCHES } from './data/worldCupData';
+import { fetchLiveWorldCupData } from './data/worldCupData';
 import { calculateGroupStandings } from './utils/standings';
 
 // Presets of players for realistic goal simulation
@@ -67,25 +67,22 @@ const INITIAL_SCORERS: Goalscorer[] = [
 ];
 
 export default function App() {
-  const [matches, setMatches] = useState<Match[]>(() => {
-    // Inject custom Live simulation match on startup for a beautiful default preview
-    return INITIAL_MATCHES.map(m => {
-      if (m.id === 'm-d5') {
-        return {
-          ...m,
-          isLive: true,
-          scoreA: 1,
-          scoreB: 1,
-          scorers: [
-            { player: 'Mohamed Salah', assist: 'Trezeguet', minute: 22 },
-            { player: 'Harry Kane', assist: 'Bukayo Saka', minute: 41 }
-          ]
-        };
-      }
-      return m;
-    });
-  });
+  const [matches, setMatches] = useState<Match[]>([]);
+  const [groups, setGroups] = useState<Group[]>([]);
+  const [topScorers, setTopScorers] = useState<Goalscorer[]>([]);
 
+  useEffect(() => {
+    async function loadRealData() {
+      const liveData = await fetchLiveWorldCupData();
+      if (liveData.matches && liveData.matches.length > 0) {
+        setMatches(liveData.matches);
+        // إذا كان الخادم يوفر المجموعات والهدافين أيضاً:
+        if (liveData.groups) setGroups(liveData.groups);
+        if (liveData.topScorers) setTopScorers(liveData.topScorers);
+      }
+    }
+    loadRealData();
+  }, []);
   const [activeGroupId, setActiveGroupId] = useState<string>('D');
   const [goalscorers, setGoalscorers] = useState<Goalscorer[]>(INITIAL_SCORERS);
   const [time, setTime] = useState<string>('18:36');
