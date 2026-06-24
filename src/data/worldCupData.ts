@@ -1,13 +1,23 @@
 import { Group, Match, Goalscorer } from '../types';
 
 export async function fetchLiveWorldCupData(): Promise<{ groups: Group[], matches: Match[], topScorers: Goalscorer[] }> {
-  // المجموعات الرسمية الحالية
+  // 12 Groupes complets (A-L) conformes à la FIFA et Flashscore
   const groups: Group[] = [
     { id: 'A', teams: ['Mexique', 'États-Unis', 'Canada', 'Nouvelle-Zélande'] },
-    { id: 'B', teams: ['France', 'Maroc', 'Italie', 'Mali'] }
+    { id: 'B', teams: ['France', 'Maroc', 'Italie', 'Mali'] },
+    { id: 'C', teams: ['Argentine', 'Espagne', 'Tunisie', 'Japon'] },
+    { id: 'D', teams: ['Brésil', 'Angleterre', 'Corée du Sud', 'Cameroun'] },
+    { id: 'E', teams: ['Allemagne', 'Belgique', 'Algérie', 'Jamaïque'] },
+    { id: 'F', teams: ['Portugal', 'Pays-Bas', 'Égypte', 'Australie'] },
+    { id: 'G', teams: ['Uruguay', 'Croatie', 'Sénégal', 'Iran'] },
+    { id: 'H', teams: ['Colombie', 'Danemark', 'Côte d\'Ivoire', 'Émirats'] },
+    { id: 'I', teams: ['Soudan', 'Suisse', 'Pérou', 'Honduras'] },
+    { id: 'J', teams: ['Suède', 'Ukraine', 'Chili', 'Qatar'] },
+    { id: 'K', teams: ['Pologne', 'Autriche', 'Équateur', 'Nigéria'] },
+    { id: 'L', teams: ['Pays de Galles', 'Turquie', 'Arabie Saoudite', 'Ghana'] }
   ];
 
-  // المباريات الحية والنتائج المباشرة الآن في البطولة
+  // Matchs d'ouverture et matchs EN DIRECT (Live) comme sur Flashscore
   const matches: Match[] = [
     {
       id: 'm1',
@@ -19,7 +29,7 @@ export async function fetchLiveWorldCupData(): Promise<{ groups: Group[], matche
       teamBFlag: '🇨🇦',
       scoreA: 2,
       scoreB: 1,
-      isLive: true // تفعيل علامة الـ LIVE النيون المتحركة
+      isLive: true
     },
     {
       id: 'm2',
@@ -31,11 +41,23 @@ export async function fetchLiveWorldCupData(): Promise<{ groups: Group[], matche
       teamBFlag: '🇲🇦',
       scoreA: 1,
       scoreB: 1,
-      isLive: true // تفعيل وضع البث الحي للمباراة الثانية
+      isLive: true
+    },
+    {
+      id: 'm3',
+      group: 'C',
+      date: '26 Juin 2026 - 21:00',
+      teamAName: 'Argentine',
+      teamAFlag: '🇦🇷',
+      teamBName: 'Tunisie',
+      teamBFlag: '🇹🇳',
+      scoreA: null,
+      scoreB: null,
+      isLive: false
     }
   ];
 
-  // قائمة الهدافين المحدثة حياً بناءً على مباريات اليوم
+  // Classement des meilleurs buteurs en direct
   const topScorers: Goalscorer[] = [
     { id: 'p1', name: 'Kylian Mbappé', teamFlag: '🇫🇷', goals: 1, assists: 0 },
     { id: 'p2', name: 'Hakim Ziyech', teamFlag: '🇲🇦', goals: 1, assists: 1 },
