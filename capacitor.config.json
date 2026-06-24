@@ -1,1 +1,5 @@
-{"appId": "com.ramy.worldcup", "appName": "Coupe du Monde", "webDir": "dist"}
+{
+  "appId": "com.ramy.worldcup",
+  "appName": "Coupe du Monde",
+  "webDir": "dist"
+}
