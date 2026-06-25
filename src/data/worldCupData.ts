@@ -1,67 +1,38 @@
 import { Group, Match, Goalscorer } from '../types';
 
 export async function fetchLiveWorldCupData(): Promise<{ groups: Group[], matches: Match[], topScorers: Goalscorer[] }> {
-  // 12 Groupes complets (A-L) conformes à la FIFA et Flashscore
+  // Les 12 groupes officiels du tournoi 2026
   const groups: Group[] = [
-    { id: 'A', teams: ['Mexique', 'États-Unis', 'Canada', 'Nouvelle-Zélande'] },
-    { id: 'B', teams: ['France', 'Maroc', 'Italie', 'Mali'] },
-    { id: 'C', teams: ['Argentine', 'Espagne', 'Tunisie', 'Japon'] },
-    { id: 'D', teams: ['Brésil', 'Angleterre', 'Corée du Sud', 'Cameroun'] },
-    { id: 'E', teams: ['Allemagne', 'Belgique', 'Algérie', 'Jamaïque'] },
-    { id: 'F', teams: ['Portugal', 'Pays-Bas', 'Égypte', 'Australie'] },
-    { id: 'G', teams: ['Uruguay', 'Croatie', 'Sénégal', 'Iran'] },
-    { id: 'H', teams: ['Colombie', 'Danemark', 'Côte d\'Ivoire', 'Émirats'] },
-    { id: 'I', teams: ['Soudan', 'Suisse', 'Pérou', 'Honduras'] },
-    { id: 'J', teams: ['Suède', 'Ukraine', 'Chili', 'Qatar'] },
-    { id: 'K', teams: ['Pologne', 'Autriche', 'Équateur', 'Nigéria'] },
-    { id: 'L', teams: ['Pays de Galles', 'Turquie', 'Arabie Saoudite', 'Ghana'] }
+    { id: 'A', teams: ['Mexico', 'South Korea', 'Czech Republic', 'South Africa'] },
+    { id: 'B', teams: ['Switzerland', 'Canada', 'Bosnia & Herzegovina', 'Qatar'] },
+    { id: 'C', teams: ['Brazil', 'Morocco', 'Scotland', 'Haiti'] },
+    { id: 'D', teams: ['USA', 'Australia', 'Paraguay', 'Turkey'] },
+    { id: 'E', teams: ['Germany', 'Ivory Coast', 'Ecuador', 'Curacao'] },
+    { id: 'F', teams: ['Netherlands', 'Japan', 'Sweden', 'Tunisia'] },
+    { id: 'G', teams: ['Egypt', 'Iran', 'Belgium', 'New Zealand'] },
+    { id: 'H', teams: ['Spain', 'Uruguay', 'Cape Verde', 'Saudi Arabia'] },
+    { id: 'I', teams: ['France', 'Norway', 'Senegal', 'Iraq'] },
+    { id: 'J', teams: ['Argentina', 'Austria', 'Algeria', 'Jordan'] },
+    { id: 'K', teams: ['Colombia', 'Portugal', 'D.R. Congo', 'Uzbekistan'] },
+    { id: 'L', teams: ['England', 'Ghana', 'Croatia', 'Panama'] }
   ];
 
-  // Matchs d'ouverture et matchs EN DIRECT (Live) comme sur Flashscore
+  // Les matchs du prochain tour (1/16 Finales) tels que vus sur Flashscore
   const matches: Match[] = [
-    {
-      id: 'm1',
-      group: 'A',
-      date: 'En cours - Direct',
-      teamAName: 'Mexique',
-      teamAFlag: '🇲🇽',
-      teamBName: 'Canada',
-      teamBFlag: '🇨🇦',
-      scoreA: 2,
-      scoreB: 1,
-      isLive: true
-    },
-    {
-      id: 'm2',
-      group: 'B',
-      date: 'En cours - Direct',
-      teamAName: 'France',
-      teamAFlag: '🇫🇷',
-      teamBName: 'Maroc',
-      teamBFlag: '🇲🇦',
-      scoreA: 1,
-      scoreB: 1,
-      isLive: true
-    },
-    {
-      id: 'm3',
-      group: 'C',
-      date: '26 Juin 2026 - 21:00',
-      teamAName: 'Argentine',
-      teamAFlag: '🇦🇷',
-      teamBName: 'Tunisie',
-      teamBFlag: '🇹🇳',
-      scoreA: null,
-      scoreB: null,
-      isLive: false
-    }
+    { id: 'r1', group: '1/16 Final', date: '29.06 - 21:30', teamAName: 'Germany', teamAFlag: '🇩🇪', teamBName: 'I1', teamBFlag: '🏆', scoreA: null, scoreB: null, isLive: false },
+    { id: 'r2', group: '1/16 Final', date: '30.06 - 22:00', teamAName: 'C3', teamAFlag: '⚡', teamBName: 'East Rutherford', teamBFlag: '🏟️', scoreA: null, scoreB: null, isLive: false },
+    { id: 'r3', group: '1/16 Final', date: '28.06 - 20:00', teamAName: 'Canada', teamAFlag: '🇨🇦', teamBName: 'Inglewood', teamBFlag: '🏟️', scoreA: null, scoreB: null, isLive: false },
+    { id: 'r4', group: '1/16 Final', date: '02.07 - 01:00', teamAName: 'USA', teamAFlag: '🇺🇸', teamBName: 'Santa Clara', teamBFlag: '🏟️', scoreA: null, scoreB: null, isLive: false }
   ];
 
-  // Classement des meilleurs buteurs en direct
+  // Classement des buteurs mis à jour
   const topScorers: Goalscorer[] = [
-    { id: 'p1', name: 'Kylian Mbappé', teamFlag: '🇫🇷', goals: 1, assists: 0 },
-    { id: 'p2', name: 'Hakim Ziyech', teamFlag: '🇲🇦', goals: 1, assists: 1 },
-    { id: 'p3', name: 'Santiago Giménez', teamFlag: '🇲🇽', goals: 2, assists: 0 }
+    { id: 'p1', name: 'Messi L.', teamFlag: '🇦🇷', goals: 5, assists: 0 },
+    { id: 'p2', name: 'Vinicius Junior', teamFlag: '🇧🇷', goals: 4, assists: 1 },
+    { id: 'p3', name: 'Haaland E.', teamFlag: '🇳🇴', goals: 4, assists: 0 },
+    { id: 'p4', name: 'Mbappe K.', teamFlag: '🇫🇷', goals: 4, assists: 0 },
+    { id: 'p5', name: 'Undav D.', teamFlag: '🇩🇪', goals: 3, assists: 2 },
+    { id: 'p6', name: 'Manzambi J.', teamFlag: '🇨🇭', goals: 3, assists: 1 }
   ];
 
   return { groups, matches, topScorers };
